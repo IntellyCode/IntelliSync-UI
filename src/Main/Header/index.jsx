@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
 import React, { useEffect } from "react";
-import AccountDetails from "./AccountDetails";
+import AccountDetails from "../Sidebar/AccountDetails";
 import MenuIcon from '@mui/icons-material/Menu';
 import Navigator from "./Navigator";
 import CurrentDate from "./CurrentDate";
@@ -15,8 +15,17 @@ export default function Header({ handleDrawer }) {
     const { sidebarHideSize, sidebarMinSize, navBarHeight} = getSharedVariables();
 
     return (
-        <AppBar position="static" sx={{ boxShadow: 0, width: "100%", height: navBarHeight, display: "flex", backgroundColor: "primary.main",minWidth:"680px" }}>
-            <Toolbar sx={{ height: 1,display:"flex",alignItems:"center",justifyContent:"center" }}>
+        <AppBar position="static" 
+        sx={{ 
+            boxShadow: 0, 
+            width: "100%", 
+            height: navBarHeight, 
+            display: "flex", 
+            backgroundColor: "primary.main",
+            minWidth:"680px" }}>
+            <Toolbar sx={{ height: 1,
+                display:"flex",alignItems:"center",
+                justifyContent:"center" }}>
                 <IconButton
                     size="large"
                     edge="start"
@@ -36,7 +45,6 @@ export default function Header({ handleDrawer }) {
                 <CurrentDate day={1} month={"November"} year={2023}/>
                 <SearchBar/>
                 <CalendarMode/>
-
             </Toolbar>
         </AppBar>
     )

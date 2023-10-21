@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Box, Container, Divider } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
-import AccountDetails from '../Header/AccountDetails';
+import AccountDetails from './AccountDetails';
 import Calendars from './Calendars';
 import Filters from './Filters';
 import Reminders from './Reminders';

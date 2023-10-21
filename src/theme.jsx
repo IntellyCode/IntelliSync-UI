@@ -68,7 +68,18 @@ const theme = createTheme({
           },
         },
       },
-    }
+    },
+    MuiDivider: {
+      variants: [
+        {
+          props: { variant:"fullWidth"},
+          style: {
+            width: "100%",
+            height:"1px"
+          },
+        },
+      ],
+    },
   },
 });
 

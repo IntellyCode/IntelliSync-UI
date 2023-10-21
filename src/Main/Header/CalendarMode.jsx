@@ -6,7 +6,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 
 
-const menuItemStyle = { px: 3, m: 0, cursor: "pointer" };
+const menuItemStyle = { px: 4, m: 0, cursor: "pointer" };
 const typographyStyle = {fontSize:"16px"}
 export default function CalendarMode() {
     const [anchorEl, setAnchorEl] = React.useState(null);

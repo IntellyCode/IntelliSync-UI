@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import App from './Main/App.jsx'
 import './index.css'
 import { CssBaseline } from '@mui/material'
-import * as CP from './ContextProviders/index.js';
+import * as CP from './Main/ContextProviders';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

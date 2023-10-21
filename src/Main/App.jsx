@@ -1,14 +1,14 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import Sidebar from "./Sidebar/Sidebar";
 import { ThemeProvider } from "@mui/material/styles";
-import { createTheme, Container, Button, Divider, Box } from "@mui/material";
-import Drawer from "./Sidebar/Drawer";
-import theme from "./theme";
-import Header from "./Header/Header";
-
+import { createTheme, Box } from "@mui/material";
+import Drawer from "./Sidebar";
+import theme from "../theme";
+import AppRight from "./App_right";
 import { getSharedVariables, isResizing, ResizeEnum as RE } from './ContextProviders';
 
-const sharedBoxStyles = { width: 1, height: 1, display: "flex", p: 0, m: 0, alignItems: "center", justifyContent: "flex-start" };
+import FullBox from "./ReusableComponents/FullBox";
+
 
 export default function App() {
     const sharedVariables = getSharedVariables();
@@ -21,6 +21,7 @@ export default function App() {
 
     };
     useEffect(() => {
+
         if (drawer == true) {
             if (resizing == RE.increasing) {
                 setDrawer(true);
@@ -29,21 +30,20 @@ export default function App() {
                 setDrawer(false);
             }
         }
-        if(resizing==RE.notResizing){
+        if (resizing == RE.notResizing) {
             setDrawerClicked(false);
         }
 
     }, [resizing]);
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ ...sharedBoxStyles, flexDirection: "row" }}>
-                <Drawer open={drawer} handleDrawer={handleDrawer} resizing={drawerClicked} />
-                <Box sx={{ ...sharedBoxStyles, flexDirection: "column" }}>
-                    <Header handleDrawer={handleDrawer} />
-                    <Divider sx={{ width: 1 }} />
-                </Box>
-
-            </Box>
+            <FullBox direction="row">
+                <Drawer
+                    open={drawer}
+                    handleDrawer={handleDrawer}
+                    resizing={drawerClicked} />
+                    <AppRight handleDrawer={handleDrawer} />
+            </FullBox>
         </ThemeProvider>
     );
 }

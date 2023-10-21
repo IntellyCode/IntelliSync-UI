@@ -1,10 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-
-//Write a context component that will set the value of a shared variable
-//to if the window is resizing or not. It should either be
-// increasing, decreasing, or not resizing. 
-//use an object named ResizeEnum that stores values increasing:1,decresing:-1,not resizing:0 and use the values in resizing state
-
 const ResizingContext = createContext(null);
 
 export const ResizeEnum = {
