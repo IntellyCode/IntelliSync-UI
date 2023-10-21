@@ -4,14 +4,15 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
-function SearchBar() {
+function SearchBar( {mobile} ) {
     return (
         <TextField
             variant='outlined'
             type="search"
             sx={{
                 mx: 3,
-                minWidth:"100px"
+                minWidth:mobile?"80px":"100px",
+                width:mobile?"80px":"auto"
             }}
             InputProps={{
                 
@@ -26,7 +27,6 @@ function SearchBar() {
             inputProps={{
                 style: {
                     height: "30px",
-
                     padding: 0,
                 },
             }}

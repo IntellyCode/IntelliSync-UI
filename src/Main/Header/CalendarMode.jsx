@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 const menuItemStyle = { px: 4, m: 0, cursor: "pointer" };
 const typographyStyle = {fontSize:"16px"}
-export default function CalendarMode() {
+export default function CalendarMode( {variant }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mode, setMode] = React.useState("Month");
     const [view, setView] = React.useState("Calendar");
@@ -25,7 +25,7 @@ export default function CalendarMode() {
         if (newView != null) setView(newView);
     };
     return (
-        <Box sx={{ justifySelf: "flex-end", ml: "auto", mr: 6 }}>
+        <Box sx={{ justifySelf: "flex-end", ml: variant=="condensed" ? 0:"auto", mr: variant=="condensed" ? 0:"6",display:"flex",alignItems:"center",my:2 }}>
             <Button
                 variant="contained"
                 color="primary"

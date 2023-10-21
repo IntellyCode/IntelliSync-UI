@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 function CurrentDate({ day, month, year }) {
     const typographyStyle = {mx:1}
     return (
-        <Box sx={{display:"flex"}}>
+        <Box sx={{display:"flex",alignItems:"center"}}>
             {day && (
                 <Typography variant="h6" sx={typographyStyle}>
                     {day}

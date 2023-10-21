@@ -11,8 +11,6 @@ const typographyStyle = { textAlign: "left", width: 'fit-content', p: 2,color:"p
 
 // Define common styles for components.
 const frame = { height: 'auto', py: 4, px: 2};
-const resetAccordion = { backgroundColor: "rgb(0,0,0,0)", boxShadow: "none"};
-const summary = { display: 'flex', alignItems: 'center', justifyContent: 'space-between' };
 
 const Calendars = () =>{
     const calendarData = [
@@ -34,8 +32,8 @@ const Calendars = () =>{
 
     return (
         <Container sx={frame}>
-            <Accordion sx={resetAccordion} disableGutters  >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ ...summary, p: 0 }} >
+            <Accordion variant="noShadow" disableGutters  >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: 0 }} variant="centeredContent">
                     <Typography variant="body1" sx={typographyStyle}>Calendars</Typography>
                 </AccordionSummary>
                 <AccordionDetails>

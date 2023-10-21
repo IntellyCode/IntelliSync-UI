@@ -39,7 +39,17 @@ const theme = createTheme({
     }
 
   },
-  spacing: 4,
+  breakpoints: {
+    values: {
+      xxs: 0,
+      xs: 253,
+      sm: 576,
+      md: 768,
+      lg: 992,
+      xl: 1200
+    }
+  },
+  spacing: (factor) => `${0.25 * factor}rem`,
   components: {
     MuiButton: {
       styleOverrides: {
@@ -72,14 +82,57 @@ const theme = createTheme({
     MuiDivider: {
       variants: [
         {
-          props: { variant:"fullWidth"},
+          props: { variant: "fullWidth" },
           style: {
             width: "100%",
-            height:"1px"
+            height: "1px"
           },
         },
       ],
     },
+    MuiAccordion: {
+      variants: [
+        {
+          props: { variant: "noShadow" },
+          style: {
+            backgroundColor: "rgb(0,0,0,0)",
+            boxShadow: "none"
+          }
+        }
+      ]
+    },
+    //Accordion summary component variant with display flex and everything centerd and spaced-between
+    MuiAccordionSummary: {
+      variants: [
+        {
+          props: { variant: "centeredContent" },
+          style: {
+            display: 'flex',
+            alignItems: 'center',
+            "& .MuiAccordionSummary-content": {
+              flexDirection: "row",
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              cursor: "default"
+            }
+          }
+        }
+      ]
+    },
+    MuiAccordionDetails: {
+      variants: [
+        {
+          props: { variant: "even-content" },
+          style: {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: "100%",
+            flexWrap: "wrap",
+          }}
+      ]
+    }
   },
 });
 

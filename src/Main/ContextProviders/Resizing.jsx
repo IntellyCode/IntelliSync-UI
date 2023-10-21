@@ -29,7 +29,6 @@ export default function ResizingProvider({ children }) {
 
             previousWidth = currentWidth;
         };
-        //ensure the updateResizingState is called with a debounce of 200ms
         
         window.addEventListener("resize", updateResizingState);
 
@@ -38,7 +37,7 @@ export default function ResizingProvider({ children }) {
         return () => {
             window.removeEventListener("resize", updateResizingState);
         };
-    }, [resizing]);
+    }, []);
 
     return <ResizingContext.Provider value={{ resizing }}>{children}</ResizingContext.Provider>;
 }

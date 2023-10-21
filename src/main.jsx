@@ -10,11 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <CssBaseline />
     <CP.ResizingProvider>
       <CP.SharedVariablesProvider>
-        <CP.BreakpointsProvider>
-
           <App />
-
-        </CP.BreakpointsProvider>
       </CP.SharedVariablesProvider>
     </CP.ResizingProvider>
   </React.StrictMode>,

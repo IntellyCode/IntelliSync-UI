@@ -1,14 +1,18 @@
 import React, { useState,useEffect } from "react";
 import { Drawer } from "@mui/material";
 import Sidebar from "./Sidebar";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
-import {getSharedVariables, useBreakpoints,breakpoints as eB} from '../ContextProviders';
+import {getSharedVariables} from '../ContextProviders';
 
 
 function SiderbarOverlay({ open, handleDrawer, resizing}) {
     const SV = getSharedVariables();
 
-    const {breakpoint} = useBreakpoints();
+    const theme = useTheme();
+
+    const matches = useMediaQuery(theme.breakpoints.down('lg'));
     
     const drawerStyle ={
         width: open? SV.drawerWidth:0,
@@ -17,13 +21,15 @@ function SiderbarOverlay({ open, handleDrawer, resizing}) {
         '& .MuiDrawer-paper': {
             width: SV.drawerWidth,
             boxSizing: 'border-box',
+            position:"fixed",
+
         },
     };
 
 
     return (
         <Drawer 
-            variant={(eB.smallerOrEqual(breakpoint,"sm"))? "temporary":"persistent"}
+            variant={matches? "temporary":"persistent"}
             hideBackdrop={true}
             anchor="left"
             open={open}
