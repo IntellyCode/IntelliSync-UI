@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, IconButton, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Accordion, AccordionSummary, AccordionDetails,Box } from "@mui/material";
 import React, { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import Navigator from "./Navigator";
@@ -14,20 +14,25 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { getOffsetValues } from "@/ContextProviders";
 import { useModeView } from "../App_right";
 export default function Header({ handleDrawer }) {
-    const {date,setters} = getOffsetValues();
-    const {modes,views} = useModeView();
+    const { date, setters } = getOffsetValues();
+    const { modes, views } = useModeView();
     const SharedVariables = getSharedVariables();
+    const [open, setOpen] = useState(false);
     const appBarStyles = {
         boxShadow: 0,
         width: "100%",
-        height: SharedVariables.navBarHeight,
+        minHeight:SharedVariables.navBarHeight,
         display: "flex",
         backgroundColor: "primary.main",
-        zIndex:1,
+        zIndex: 1,
+        alignItems: "center",
+        justifyContent:"center",
+        transition:"height 200ms"
+
     };
     const toolbarStyles = {
         height: 1,
-        width: 1,
+        width: 0.98,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -36,6 +41,7 @@ export default function Header({ handleDrawer }) {
         display: "flex",
         alignItems: "center",
         mr: 2,
+
         "&:focus": {
             outline: "none"
         }
@@ -47,21 +53,22 @@ export default function Header({ handleDrawer }) {
 
     const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const [open, setOpen] = useState(false);
+    
 
     if (matchesMd) {
-        const handleAccordion= () => {
+        const handleAccordion = () => {
             setOpen(!open);
-          };
+        };
         return (
             <AppBar position="static" sx={appBarStyles}>
                 <Toolbar sx={toolbarStyles} disableGutters>
-                    <Accordion variant="noShadow" 
-                    sx={{ width: 1,zIndex:2,position:"relative",m:0}} 
-                    disableGutters expanded={open} >
-                        <AccordionSummary variant="centeredContent" 
-                        expandIcon={<ArrowDropDownIcon fontSize="large" onClick={handleAccordion}/>}
-                        sx={{px:4}}
+                    <Accordion variant="noShadow"
+                        sx={{ width: 1,m: 0 }}
+                        disableGutters expanded={open} >
+                        <AccordionSummary variant="centeredContent"
+                            expandIcon={<ArrowDropDownIcon fontSize="large" onClick={handleAccordion} />}
+                            sx={{ px: 4,height:SharedVariables.navBarHeight, }}
+                            
                         >
                             <IconButton
                                 size="large"
@@ -73,23 +80,17 @@ export default function Header({ handleDrawer }) {
                             >
                                 <MenuIcon fontSize="medium" />
                             </IconButton>
-                            <CurrentDate variant={modes.mode}/>
-                            {!matchesSm && <CalendarMode variant="condensed" />}
-                            {matchesSm&&<div></div>}
+                            <CurrentDate variant={modes.mode} />
+                            {matchesMd && <SearchBar mobile={matchesMd} />}
                         </AccordionSummary>
-                        <AccordionDetails variant="even-content" 
-                        sx={{
-                        backgroundColor:"primary.main",
-                        position:"absolute",
-                        width:"100%",
-                        m:0,
-                        opacity: open ? 1:0, 
-                        px:!matchesSm? 12:1,
-                        justifyContent:matchesSm?"center":"space-between",
-                        transition:"opacity 600ms"}}>
-                            <Navigator />
-                            <SearchBar mobile={matchesSm} />
-                            {matchesSm && <CalendarMode variant="condensed" />}
+                        <AccordionDetails variant="even-content"
+                            sx={{
+                                backgroundColor: "primary.main",
+                                width: "100%",
+                                m: 0,
+                                p:0
+                            }}>
+                            <CalendarMode variant="condensed" />
                         </AccordionDetails>
                     </Accordion>
                 </Toolbar>
@@ -112,8 +113,16 @@ export default function Header({ handleDrawer }) {
                 </IconButton>
                 <Navigator />
                 <CurrentDate variant={modes.mode} />
-                <SearchBar />
-                <CalendarMode />
+                <Box sx={{
+                    display:"flex",
+                    alignItems:"center",
+                    justifyContent:"center",
+                    ml:"auto",
+
+                }}>
+                    <SearchBar />
+                    <CalendarMode />
+                </Box>
             </Toolbar>
         </AppBar>
     )
