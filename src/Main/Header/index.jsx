@@ -11,7 +11,11 @@ import { useTheme } from '@mui/material/styles';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
+import { getOffsetValues } from "@/ContextProviders";
+import { useModeView } from "../App_right";
 export default function Header({ handleDrawer }) {
+    const {date,setters} = getOffsetValues();
+    const {modes,views} = useModeView();
     const SharedVariables = getSharedVariables();
     const appBarStyles = {
         boxShadow: 0,
@@ -69,7 +73,7 @@ export default function Header({ handleDrawer }) {
                             >
                                 <MenuIcon fontSize="medium" />
                             </IconButton>
-                            <CurrentDate day={1} month={"November"} year={2023} />
+                            <CurrentDate variant={modes.mode}/>
                             {!matchesSm && <CalendarMode variant="condensed" />}
                             {matchesSm&&<div></div>}
                         </AccordionSummary>
@@ -107,7 +111,7 @@ export default function Header({ handleDrawer }) {
                     <MenuIcon fontSize="medium" />
                 </IconButton>
                 <Navigator />
-                <CurrentDate day={1} month={"November"} year={2023} />
+                <CurrentDate variant={modes.mode} />
                 <SearchBar />
                 <CalendarMode />
             </Toolbar>
