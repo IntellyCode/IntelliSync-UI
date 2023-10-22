@@ -10,7 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <CssBaseline />
     <CP.ResizingProvider>
       <CP.SharedVariablesProvider>
+        <CP.DateTrackerProvider>
           <App />
+          </CP.DateTrackerProvider >
       </CP.SharedVariablesProvider>
     </CP.ResizingProvider>
   </React.StrictMode>,

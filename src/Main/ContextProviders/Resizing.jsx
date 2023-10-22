@@ -13,7 +13,6 @@ export const isResizing =()=> useContext(ResizingContext);
 
 export default function ResizingProvider({ children }) {
     const [resizing, setResizing] = useState(0);
-
     useEffect(() => {
         let previousWidth = window.innerWidth;
 
@@ -26,7 +25,6 @@ export default function ResizingProvider({ children }) {
             } else {
                 if (resizing != ResizeEnum.notResizing) setResizing(ResizeEnum.notResizing);
             }
-
             previousWidth = currentWidth;
         };
         
@@ -39,5 +37,5 @@ export default function ResizingProvider({ children }) {
         };
     }, []);
 
-    return <ResizingContext.Provider value={{ resizing }}>{children}</ResizingContext.Provider>;
+    return <ResizingContext.Provider value={{ resizing}}>{children}</ResizingContext.Provider>;
 }

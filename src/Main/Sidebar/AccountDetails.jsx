@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography, Button, Container, Accordion, AccordionSummary, Menu, MenuItem, IconButton, Avatar,ListItemIcon } from '@mui/material';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 const frame = {p: 2,height:"80px",width:"250px",m:0 };
 const typographyStyle = { textAlign: "center", width: 'fit-content', p: 2, color: "primary.contrastText", fontSize: "17px", cursor: "default" };
 const resetAccordion = { backgroundColor: 'rgb(0, 0, 0, 0)', boxShadow: 'none' };
@@ -83,7 +83,7 @@ export default function AccountDetails( { mobile,handleDrawer }) {
           {mobile && <IconButton fontSize='large' sx={{
             p: 2, m: 0, "&:focus": {
               outline: "none", // Remove the default focus outline
-            }}} onClick={handleDrawer}><MenuIcon fontSize='large'/></IconButton>}
+            }}} onClick={handleDrawer}><ChevronLeftIcon fontSize='large'/></IconButton>}
         </AccordionSummary>
       </Accordion>
     </Container>

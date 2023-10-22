@@ -9,8 +9,10 @@ import { getSharedVariables, isResizing, ResizeEnum as RE } from './ContextProvi
 
 import FullBox from "./ReusableComponents/FullBox";
 
+import Month from "@/DateConstructors/Month";
 
 export default function App() {
+
     const sharedVariables = getSharedVariables();
     const { resizing } = isResizing();
     const [drawer, setDrawer] = useState(true);

@@ -4,20 +4,20 @@ import React, { useState } from "react";
 import SquareIcon from '@mui/icons-material/Square';
 import CheckIcon from '@mui/icons-material/Check';
 
-
+import { useModeView } from "@/App_right";
 
 const menuItemStyle = { px: 4, m: 0, cursor: "pointer" };
 const typographyStyle = {fontSize:"16px"}
 export default function CalendarMode( {variant }) {
+    const { modes, views } = useModeView();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mode, setMode] = React.useState("Month");
     const [view, setView] = React.useState("Calendar");
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (mode) => {
-        if (mode != "inherit") setMode(mode);
+        if (mode != modes.mode&&mode!="inherit") modes.setMode(mode);
         setAnchorEl(null);
     };
 
@@ -25,7 +25,12 @@ export default function CalendarMode( {variant }) {
         if (newView != null) setView(newView);
     };
     return (
-        <Box sx={{ justifySelf: "flex-end", ml: variant=="condensed" ? 0:"auto", mr: variant=="condensed" ? 0:"6",display:"flex",alignItems:"center",my:2 }}>
+        <Box sx={{ 
+            justifySelf: "flex-end", 
+            ml: variant=="condensed" ? 0:"auto", 
+            mr: variant=="condensed" ? 0:"6",
+            display:"flex",
+            alignItems:"center",my:2 }}>
             <Button
                 variant="contained"
                 color="primary"
@@ -43,7 +48,7 @@ export default function CalendarMode( {variant }) {
                         boxShadow: "none",
                     }
                 }}
-            >{mode}<KeyboardArrowDownIcon /></Button>
+            >{modes.mode}<KeyboardArrowDownIcon /></Button>
             <Menu
                 anchorEl={anchorEl}
                 open={open}
@@ -65,10 +70,10 @@ export default function CalendarMode( {variant }) {
                         minWidth: 180
                     }
                 }}>
-                <MenuItem onClick={() => { handleClose("Day") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Day</Typography></MenuItem>
-                <MenuItem onClick={() => { handleClose("Week") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Week</Typography></MenuItem>
-                <MenuItem onClick={() => { handleClose("Month") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Month</Typography></MenuItem>
-                <MenuItem onClick={() => { handleClose("Year") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Year</Typography></MenuItem>
+                <MenuItem onClick={() => { handleClose("day") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Day</Typography></MenuItem>
+                <MenuItem onClick={() => { handleClose("week") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Week</Typography></MenuItem>
+                <MenuItem onClick={() => { handleClose("month") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Month</Typography></MenuItem>
+                <MenuItem onClick={() => { handleClose("year") }} sx={menuItemStyle}><Typography sx={typographyStyle}>Year</Typography></MenuItem>
                 <Divider />
                 <OptionsGroup />
             </Menu>
