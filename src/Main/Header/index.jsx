@@ -116,9 +116,8 @@ export default function Header({ handleDrawer }) {
                 <Box sx={{
                     display:"flex",
                     alignItems:"center",
-                    justifyContent:"center",
-                    ml:"auto",
-
+                    justifyContent:"flex-end",
+                    width:"100%"
                 }}>
                     <SearchBar />
                     <CalendarMode />

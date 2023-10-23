@@ -46,7 +46,9 @@ function Navigator() {
             <IconButton onClick={substract} sx={{p:0}}>
                 <ChevronLeftIcon sx={{ color: "primary.contrastText",p:1 }} fontSize="large"/>
             </IconButton>
-            <Button variant="contained" color="primary" onClick={reset} sx={{mx:1}}>
+            <Button variant="contained" color="primary" onClick={reset} 
+            sx={{mx:1,
+            boxShadow:"0px 0px 7px 0px rgba(0,0,0,0.5);"}}>
                 Today
             </Button>
 
