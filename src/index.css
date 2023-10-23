@@ -28,10 +28,10 @@ body {
   padding:0 !important;
   display: flex;
   place-items: center;
-  height: 100vh;
+  height:100svh;
   width: 100vw;
   overscroll-behavior: none;
-  overflow: hidden;
+  overflow:hidden
 }
 
 h1 {

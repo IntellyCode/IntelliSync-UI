@@ -4,7 +4,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SquareIcon from "@mui/icons-material/Square";
 import CheckIcon from "@mui/icons-material/Check";
-
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
 
@@ -61,21 +62,21 @@ const Reminders = () => {
                             onClick={() => handleFilterChange("all")}
                             sx={{color:"primary.contrastText",backgroundColor:completedFilter === "all" ? "quaternary.main" : "quaternary.light"}}
                         >
-                            A
+                            All
                         </Button>
                         <Button
                             variant="contained"
                             onClick={() => handleFilterChange("completed")}
                             sx={{color:"primary.contrastText",backgroundColor:completedFilter === "completed" ? "success.main" : "success.light"}}
                         >
-                            C
+                            <DoneIcon/>
                         </Button>
                         <Button
                             variant="contained"
                             onClick={() => handleFilterChange("incompleted")}
                             sx={{color:"primary.contrastText",backgroundColor:completedFilter === "incompleted" ? "missing.main" : "missing.light"}}
                         >
-                            I
+                            <CloseIcon/>
                         </Button>
                     </Stack>
                     <Divider />

@@ -2,7 +2,8 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { getOffsetValues } from '@ContextProviders';
-
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';    
 const monthNames = [
     "January",
     "February",
@@ -19,14 +20,25 @@ const monthNames = [
   ];
 
 function CurrentDate({ variant = "month" }) {
+    const theme = useTheme();
+
+    const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
+
     if (!["day", "week", "month", "year"].includes(variant)) {
         throw new Error("Invalid variant prop value. Must be day, week, month, or year.");
     }
 
     const { date, setters } = getOffsetValues();
-    const typographyStyle = { mx: 1,userSelect:"none",fontSize:"22px" };
+    const typographyStyle = { mx: 1,userSelect:"none",fontSize:matchesSm?"19px":"22px" };
+    const boxStyle = {
+        display: "flex", 
+        alignItems: "center",
+        width:matchesSm?"min-content":"200px",
+        justifyContent:"center",
+        mx:0
+    };
     return (
-        <Box sx={{ display: "flex", alignItems: "center",width:"200px",justifyContent:"center" }}>
+        <Box sx={boxStyle}>
             {variant=="day" && (
                 <Typography variant="h6" sx={typographyStyle}>
                     {date.day}

@@ -66,7 +66,7 @@ function SearchBar({ mobile }) {
     if (mobile) {
         return (
             <>
-                <IconButton sx={{ cursor: "default", p: 3, m: 2 }} onClick={handleSearchClick}>
+                <IconButton sx={{ cursor: "default", p: 1,}} onClick={handleSearchClick}>
                     <SearchIcon />
                 </IconButton>
                 <Drawer anchor="top" open={showDrawer} onClose={handleDrawerClose}
@@ -115,7 +115,6 @@ function SearchBar({ mobile }) {
 function DropdownMenu({ visible }) {
     const SharedVariables = getSharedVariables();
     const maxHeight = vhToPixels(100) - SharedVariables.navBarHeight;
-    console.log(maxHeight);
     const style={
         height:visible?`${maxHeight}px`:"0px",    
         transition:"height 200ms",

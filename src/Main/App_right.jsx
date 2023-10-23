@@ -49,7 +49,7 @@ export default function AppRight({ handleDrawer }) {
     return (
         // Wrap the component with the context provider
         <ModeViewContext.Provider value={{ modes, views }}>
-            <FullBox direction="column">
+            <FullBox direction="column" >
                 <Header handleDrawer={handleDrawer} />
                 <Divider variant="fullWidth" />
                 <Month monthClass={monthClass} />

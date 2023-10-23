@@ -21,7 +21,7 @@ const commonButtonStyle = {
 const menuItemStyle = { px: 4, m: 0, cursor: "pointer" };
 const typographyStyle = { fontSize: "16px" };
 
-export default function CalendarMode({ variant }) {
+export default function CalendarMode({ variant, mobile }) {
     const { modes } = useModeView();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [view, setView] = React.useState("Calendar");
@@ -53,15 +53,15 @@ export default function CalendarMode({ variant }) {
         };
 
         const condensedTypography = {
-            mx: 6,
+            mx: 3,
             cursor: "pointer",
             userSelect: "none",
-            fontSize: "16px",
-            width:"40px",
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"center",
-            height:"fit-content",
+            fontSize: mobile?"14px":"16px",
+            width: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "fit-content",
         };
 
         const modeOptions = [
@@ -69,7 +69,7 @@ export default function CalendarMode({ variant }) {
             { mode: "week", text: "Week" },
             { mode: "month", text: "Month" },
             { mode: "year", text: "Year" },
-            
+
         ];
 
         return (
@@ -86,10 +86,10 @@ export default function CalendarMode({ variant }) {
                             variant="body2"
                             sx={{
                                 ...condensedTypography,
-                                ...(modes.mode === option.mode && { 
-                                    color:"tertiary.main",
-                                    fontWeight:"bold"
-                                    }),
+                                ...(modes.mode === option.mode && {
+                                    color: "tertiary.main",
+                                    fontWeight: "bold"
+                                }),
                             }}
                             onClick={() => modes.setMode(option.mode)}
                         >
