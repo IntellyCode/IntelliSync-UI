@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useRef} from 'react';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
@@ -63,6 +63,7 @@ function SearchBar({ mobile }) {
         setShowDrawer(false);
     };
 
+    const inputRef = useRef();
     if (mobile) {
         return (
             <>
@@ -85,10 +86,13 @@ function SearchBar({ mobile }) {
                                 <SearchIcon />
                             </SearchIconWrapper>
                             <StyledInputBase
+                                inputRef={inputRef}
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
                                 style={{ width: "100%" }}
-                                onBlur={() => { setShowBottomDrawer(false)}}
+                                onBlur={() => { 
+                                    inputRef.current.value.length > 0 ? "":setShowBottomDrawer(false);
+                                }}
                                 onFocus={() => { setShowBottomDrawer(true) }}
                             />
                         </Search>
