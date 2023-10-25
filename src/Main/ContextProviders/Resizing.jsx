@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useRef } from 'react';
 const ResizingContext = createContext(null);
 
 export const ResizeEnum = {
@@ -8,34 +8,55 @@ export const ResizeEnum = {
 }
 
 
-export const isResizing =()=> useContext(ResizingContext);
+export const isResizing = () => useContext(ResizingContext);
 
 
 export default function ResizingProvider({ children }) {
     const [resizing, setResizing] = useState(0);
+    const [containerInfo, setContainerInfo] = useState(
+        {
+            width: window.innerWidth,
+            height: window.innerHeight,
+            resizingX: ResizeEnum.notResizing,
+            resizingY: ResizeEnum.notResizing
+        });
+    const previousSize = useRef({ width: window.innerWidth, height: window.innerHeight });
     useEffect(() => {
-        let previousWidth = window.innerWidth;
+        let timeoutId;
 
-        const updateResizingState = () => {
-            const currentWidth = window.innerWidth;
-            if (currentWidth > previousWidth) {
-                if (resizing != ResizeEnum.increasing) setResizing(ResizeEnum.increasing);
-            } else if (currentWidth < previousWidth) {
-                if (resizing != ResizeEnum.decreasing) setResizing(ResizeEnum.decreasing);
-            } else {
-                if (resizing != ResizeEnum.notResizing) setResizing(ResizeEnum.notResizing);
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                const { width, height } = entry.contentRect;
+                setContainerInfo((prevContainer) => {
+                    const container = { ...prevContainer };
+                    if (width > previousSize.current.width) {
+                        container.resizingX = ResizeEnum.increasing;
+                    } else if (width < previousSize.current.width) {
+                        container.resizingX = ResizeEnum.decreasing;
+                    } else {
+                        container.resizingX = ResizeEnum.notResizing;
+                    }
+                    if (height > previousSize.current.height) {
+                        container.resizingY = ResizeEnum.increasing;
+                    } else if (height < previousSize.current.height) {
+                        container.resizingY = ResizeEnum.decreasing;
+                    } else {
+                        container.resizingY = ResizeEnum.notResizing;
+                    }
+                    container.width = width;
+                    container.height = height;
+                    previousSize.current = { width, height };
+                    return container;
+                });
             }
-            previousWidth = currentWidth;
-        };
-        
-        window.addEventListener("resize", updateResizingState);
+        });
 
-        updateResizingState();
+        resizeObserver.observe(window.document.body);
 
         return () => {
-            window.removeEventListener("resize", updateResizingState);
+            resizeObserver.disconnect();
+            
         };
     }, []);
-
-    return <ResizingContext.Provider value={{ resizing}}>{children}</ResizingContext.Provider>;
+    return <ResizingContext.Provider value={containerInfo}>{children}</ResizingContext.Provider>;
 }

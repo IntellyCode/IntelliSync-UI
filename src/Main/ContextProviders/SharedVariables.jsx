@@ -9,6 +9,7 @@ const SharedVariables = {
     footerHeight: 40,
     drawerWidth: 250,
     minNavBarWidth: 680,
+    monthMobileWidth:200
 }
 
 export default function SharedVariablesProvider({ children }) {

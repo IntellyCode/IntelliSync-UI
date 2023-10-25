@@ -11,11 +11,11 @@ import { useTheme } from '@mui/material/styles';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-import { getOffsetValues } from "@/ContextProviders";
+import { getDateValues } from "@/ContextProviders";
 import { useModeView } from "../App_right";
 import FullBox from "../ReusableComponents/FullBox";
 export default function Header({ handleDrawer }) {
-    const { date, setters } = getOffsetValues();
+    const { date, setters } = getDateValues();
     const { modes, views } = useModeView();
     const SharedVariables = getSharedVariables();
     const [open, setOpen] = useState(false);
@@ -71,14 +71,16 @@ export default function Header({ handleDrawer }) {
                         sx={{ width: 1, m: 0 }}
                         disableGutters expanded={open} >
                         <AccordionSummary variant="centeredContent"
-                            expandIcon={<ArrowDropDownIcon fontSize={matchesSm ? "medium" : "large"} onClick={handleAccordion} />}
+
                             sx={accordionSummary}
 
                         >
                             <FullBox direction="row"
-                            sx={{justifyContent:"space-between",
-                            boxSizing:"border-box",
-                            px:!matchesSm?3:1}}>
+                                sx={{
+                                    justifyContent: "space-between",
+                                    boxSizing: "border-box",
+                                    px: !matchesSm ? 3 : 1
+                                }}>
                                 <IconButton
                                     size="large"
                                     edge="start"
@@ -89,7 +91,19 @@ export default function Header({ handleDrawer }) {
                                 >
                                     <MenuIcon fontSize="medium" />
                                 </IconButton>
-                                <CurrentDate variant={modes.mode} />
+                                <FullBox direction="row"
+                                    sx={{
+                                        alignItems: "center",
+                                        justifyContent: "center"
+                                    }}
+                                    onClick={handleAccordion} >
+                                    <CurrentDate variant={modes.mode} />
+                                    <ArrowDropDownIcon fontSize={matchesSm ? "medium" : "large"} sx={{
+                                        transform: open ? "rotate(-180deg)" : "rotate(0deg)",
+                                        transition: "transform 200ms"
+                                    
+                                    }} />
+                                </FullBox>
                                 <SearchBar mobile={matchesMd} />
                             </FullBox>
                         </AccordionSummary>

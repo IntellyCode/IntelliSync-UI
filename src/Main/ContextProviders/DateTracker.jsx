@@ -12,7 +12,7 @@ import React, { createContext, useEffect, useState,useContext } from 'react';
 
 const DateTrackerContext = createContext();
 
-export function getOffsetValues() {
+export function getDateValues() {
     return useContext(DateTrackerContext);
 }
 
@@ -22,7 +22,6 @@ const DateTracker = ({ children }) => {
     const [yearOffset, setYearOffset] = useState(0);
     const actualDate = new Date();
     const calendarDate = new Date(actualDate.getFullYear() + yearOffset, actualDate.getMonth() + monthOffset, actualDate.getDate() + dayOffset);
-
     const date = {
         day: calendarDate.getDate(),
         month:calendarDate.getMonth(),
@@ -49,11 +48,23 @@ const DateTracker = ({ children }) => {
         }
     },[monthOffset])
     
+    function setDay(day){
+        setDayOffset(day - actualDate.getDate());
+    }
+    function setMonth(month){
+        setMonthOffset(month - actualDate.getMonth());
+    }
+    function setYear(year){
+        setYearOffset(year - actualDate.getFullYear());
+    }
     
     const setters={
         setDayOffset,
         setMonthOffset,
         setYearOffset,
+        setDay,
+        setMonth,
+        setYear
     }
 
     return (

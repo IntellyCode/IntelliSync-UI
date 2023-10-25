@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
-import { getOffsetValues } from '@ContextProviders';
+import { getDateValues } from '@ContextProviders';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';    
 const monthNames = [
@@ -28,13 +28,12 @@ function CurrentDate({ variant = "month" }) {
         throw new Error("Invalid variant prop value. Must be day, week, month, or year.");
     }
 
-    const { date, setters } = getOffsetValues();
+    const { date, setters } = getDateValues();
     const typographyStyle = { mx: 1,userSelect:"none",fontSize:matchesSm?"19px":"22px" };
     const boxStyle = {
         display: "flex", 
         alignItems: "center",
-        width:matchesSm?"min-content":"200px",
-        justifyContent:"center",
+        justifyContent:"flex-end",
         mx:0
     };
     return (

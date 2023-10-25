@@ -7,6 +7,8 @@ class Month {
   days = [];
 
   constructor(month, year) {
+    this.month = month;
+    this.year = year;
     const currentDate = new Date();
     let firstDay = new Date(year, month, 1).getDay();
     let prevMonthDays = new Date(year, month, 0).getDate();

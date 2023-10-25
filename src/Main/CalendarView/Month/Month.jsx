@@ -2,30 +2,13 @@ import React, { useRef, forwardRef, useEffect,useState } from "react";
 
 import FullBox from "@ReusableComponents/FullBox";
 import Day from "./Day";
+import { isResizing } from "@ContextProviders";
 
 export default function Month({ monthClass }) {
   const monthArray = monthClass.getDays();
   const ref = useRef(null);
   
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-  useEffect(() => {
-    const containerElement = ref.current;
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const { width, height } = entry.contentRect;
-        setContainerSize({ width, height });
-      }
-    });
-
-    if (containerElement) {
-      resizeObserver.observe(containerElement);
-    }
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
+  const containerInfo = isResizing();
   return (
     <Grid ref={ref}>
       {monthArray.map((week, i) => {
@@ -38,7 +21,7 @@ export default function Month({ monthClass }) {
                 grayed={day[1]}
                 dayOfWeek={dayOfWeek}
                 today={day[2]}
-                containerSize={containerSize}/>;
+                containerSize={containerInfo}/>;
             })}
           </React.Fragment>
         );

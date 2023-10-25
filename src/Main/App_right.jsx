@@ -1,4 +1,4 @@
-import { createContext, useState, useContext,useRef } from "react";
+import { createContext, useState, useContext,useRef, useEffect } from "react";
 import FullBox from "./ReusableComponents/FullBox";
 import Header from "./Header";
 import Divider from "@mui/material/Divider";
@@ -6,8 +6,11 @@ import Divider from "@mui/material/Divider";
 import Month from "./CalendarView/Month/Month";
 
 import MonthClass from "@/DateConstructors/Month.js";
-
-import { getOffsetValues } from "@/ContextProviders";
+import YearClass from "@/DateConstructors/Year.js";
+import { getDateValues } from "@/ContextProviders";
+import Year from "./CalendarView/Year/Year";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@emotion/react";
 // Create a new context for mode and view
 const ModeViewContext = createContext();
 
@@ -20,13 +23,13 @@ export function useModeView() {
     return context;
 }
 export default function AppRight({ handleDrawer }) {
-    const { date,setters } = getOffsetValues();
-    const monthClass = new MonthClass(date.month,date.year);
-
+    const { date,setters } = getDateValues();
     // Set the initial values for mode and view
-    const [mode, setMode] = useState("day");
+    const [mode, setMode] = useState("year");
     const [view, setView] = useState("calendar");
-
+    const theme = useTheme();
+    const smallerThanSm = useMediaQuery(theme.breakpoints.down("sm"))
+    
     // Check if mode is valid
     if (!["day", "week", "month", "year"].includes(mode)) {
         throw new Error("Invalid mode value. Must be day, week, month, or year.");
@@ -46,13 +49,20 @@ export default function AppRight({ handleDrawer }) {
         view,
         setView
     }
+    /*useEffect(() => {
+        if (mode == "year" && smallerThanMd) {
+            setMode("month")
+        }
+    },[mode,smallerThanMd])
+    */
     return (
         // Wrap the component with the context provider
         <ModeViewContext.Provider value={{ modes, views }}>
             <FullBox direction="column" >
                 <Header handleDrawer={handleDrawer} />
                 <Divider variant="fullWidth" />
-                <Month monthClass={monthClass} />
+                {mode=="month"&&<Month monthClass={new MonthClass(date.month,date.year)} />}
+                {mode=="year" &&!smallerThanSm&&<Year yearClass={new YearClass(date.year)} />}
             </FullBox>
         </ModeViewContext.Provider>
     );

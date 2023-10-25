@@ -53,7 +53,7 @@ export default function Day({ day, grayed, dayOfWeek, today, containerSize }) {
                 borderRight: '0.5px solid rgb(0,0,0,0.1)',
                 borderBottom: '0.5px solid rgb(0,0,0,0.1)',
                 overflow: 'hidden',
-                minHeight: '60px',
+                minHeight: '80px',
 
             }}
             onDoubleClick={addEvents}

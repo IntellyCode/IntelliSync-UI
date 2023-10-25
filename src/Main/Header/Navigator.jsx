@@ -4,10 +4,10 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { useModeView } from "@/App_right";
-import { getOffsetValues } from '@/ContextProviders';
+import { getDateValues } from '@/ContextProviders';
 function Navigator() {
     const { modes, views } = useModeView();
-    const { date, setters } = getOffsetValues();
+    const { date, setters } = getDateValues();
     function substract(){
         if(modes.mode=="day"){
             setters.setDayOffset(date=>date-1)

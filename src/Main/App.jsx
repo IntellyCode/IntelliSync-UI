@@ -1,42 +1,56 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 import { ThemeProvider } from "@mui/material/styles";
-import { createTheme, Box } from "@mui/material";
+import { createTheme, Box, useMediaQuery } from "@mui/material";
 import Drawer from "./Sidebar";
 import theme from "../theme";
 import AppRight from "./App_right";
-import { getSharedVariables, isResizing, ResizeEnum as RE } from './ContextProviders';
 
 import FullBox from "./ReusableComponents/FullBox";
 
 import Month from "@/DateConstructors/Month";
+import { useTheme } from "@emotion/react";
 
 export default function App() {
-
-    const sharedVariables = getSharedVariables();
-    const { resizing } = isResizing();
+    //console.clear();
     const [drawer, setDrawer] = useState(true);
     const [drawerClicked, setDrawerClicked] = useState(true);
     const handleDrawer = () => {
         setDrawerClicked(true);
         setDrawer(!drawer);
-
     };
-    useEffect(() => {
+    const matchesLg = useMediaQuery(theme.breakpoints.down("lg"));
 
+    useEffect(() => {
+        if (matchesLg) {
+            setDrawerClicked(false);
+            setDrawer(false);
+        } else{
+            setDrawerClicked(false);
+        }
+    }, [matchesLg])
+    /**
+    //This useEffect is used to close the drawer automatically, when resizing the window
+    //It is inefficient in a completely browser environment 
+    //Hence disabled on the web, but will be enabled and rewritten for tauri
+     //setDrawerClicked(true);
+     const [drawerClicked, setDrawerClicked] = useState(true);
+      const { resizingX } = isResizing();
+    useEffect(() => {
         if (drawer == true) {
-            if (resizing == RE.increasing) {
+            if (resizingX == RE.increasing) {
                 setDrawer(true);
                 setDrawerClicked(false);
-            } else if (resizing == RE.decreasing) {
+            } else if (resizingX == RE.decreasing) {
                 setDrawer(false);
             }
         }
-        if (resizing == RE.notResizing) {
+        if (resizingX == RE.notResizing) {
             setDrawerClicked(false);
         }
 
-    }, [resizing]);
+    }, [resizingX]);
+    */
     return (
         <ThemeProvider theme={theme}>
             <FullBox direction="row">
@@ -44,7 +58,7 @@ export default function App() {
                     open={drawer}
                     handleDrawer={handleDrawer}
                     resizing={drawerClicked} />
-                    <AppRight handleDrawer={handleDrawer} />
+                <AppRight handleDrawer={handleDrawer} />
             </FullBox>
         </ThemeProvider>
     );
