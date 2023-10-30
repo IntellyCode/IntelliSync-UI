@@ -4,50 +4,93 @@
     * @param {Integer} year 
     */
 class Month {
-  days = [];
+    days = [];
 
-  constructor(month, year) {
-    this.month = month;
-    this.year = year;
-    const currentDate = new Date();
-    let firstDay = new Date(year, month, 1).getDay();
-    let prevMonthDays = new Date(year, month, 0).getDate();
-    let firstWeek = [];
-    for (let i = 0; i < firstDay; i++) {
-      firstWeek.push([prevMonthDays - firstDay + i + 1, true, false]);
-    }
-    let nextWeeks = [];
-    if (firstWeek.length > 0) {
-      firstWeek.length % 7 == 0 ? this.days.push(firstWeek) : (nextWeeks = firstWeek);
-    }
-    let currentMonthDays = new Date(year, month + 1, 0).getDate();
+    constructor(month, year) {
 
-    for (let i = 1; i <= currentMonthDays; i++) {
-      let today = false;
-      if (i === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
-        today = true;
-      }
-      nextWeeks.push([i, false, today]);
-      if (nextWeeks.length === 7) {
-        this.days.push(nextWeeks);
-        nextWeeks = [];
-      }
-    }
-    let nextMonthDays = new Date(year, month + 2, 0).getDate();
-    let i = 1;
-    while (this.days.length < 6) {
-      nextWeeks.push([i, true, false]);
-      if (nextWeeks.length === 7) {
-        this.days.push(nextWeeks);
-        nextWeeks = [];
-      }
-      i++;
-    }
-  }
+        //set local variables
+        this.month = month;
+        this.year = year;
 
-  getDays() {
-    return this.days;
-  }
+        let firstWeek = this.getFirstWeek();
+
+        let nextWeeks = [];
+
+        if (firstWeek.length > 0 && firstWeek.length % 7 == 0) {
+            this.days.push(firstWeek)
+        } else {
+            nextWeeks = firstWeek;
+        }
+
+        this.getOtherWeeks(nextWeeks);
+        this.getLastWeeks(nextWeeks);
+    }
+
+    getDays() {
+        return this.days;
+    }
+
+    getFirstWeek() {
+        //get first day of the month
+        let firstDay = new Date(this.year, this.month, 1).getDay();
+        //get number of days in previous month
+        let prevMonthDays = new Date(this.year, this.month, 0).getDate();
+
+        let firstWeek = [];
+
+        for (let i = 0; i < firstDay; i++) {
+            firstWeek.push([prevMonthDays - firstDay + i + 1, true, false]);
+        }
+        return firstWeek;
+    }
+    
+    getOtherWeeks(nextWeeks) {
+
+        const currentDate = new Date();
+
+        //get number of days in current month
+        let currentMonthDays = new Date(this.year, this.month + 1, 0).getDate();
+
+        for (let i = 1; i <= currentMonthDays; i++) {
+            nextWeeks.push([i, false, this.isToday(currentDate, i, this.month, this.year)]);
+
+            if (nextWeeks.length === 7) {
+                this.days.push(nextWeeks);
+                nextWeeks = [];
+            }
+
+        }
+    }
+
+    getLastWeeks(nextWeeks) {
+        //get number of days in next month
+        let nextMonthDays = new Date(this.year, this.month + 2, 0).getDate();
+        let i = 1;
+        while (this.days.length < 6) {
+            nextWeeks.push([i, true, false]);
+            if (this.isArrayFull(nextWeeks)) {
+                nextWeeks = [];
+            }
+            i++;
+        }
+    }
+
+    isToday(currentDate, i, month, year) {
+        if (i === currentDate.getDate()
+            && month === currentDate.getMonth()
+            && year === currentDate.getFullYear()) {
+            return true;
+        }
+        return false
+    }
+
+    isArrayFull(array) {
+        if (array.length === 7) {
+            this.days.push(array);
+            return true;
+        }
+        return false;
+    }
 }
-  
-  export default Month;
+
+export default Month;
