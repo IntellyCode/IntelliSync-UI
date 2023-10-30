@@ -13,8 +13,8 @@ import React from 'react';
 import { Box, Typography, Grid, Paper, List, ListItem, ListItemText } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import FullBox from '@ReusableComponents/FullBox';
-import { getDateValues } from '@ContextProviders/DateTracker';
-import { useModeView } from '../../App_right';
+import { getDateValues } from '@ContextProviders/DateTrackerProvider';
+import { useModeView } from '../../CalendarFrame';
 import { isResizing } from '@ContextProviders';
 
 const monthsArray = [

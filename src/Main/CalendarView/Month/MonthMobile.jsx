@@ -3,7 +3,7 @@ import { useMediaQuery, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import FullBox from "@ReusableComponents/FullBox";
 import DayMobile from "./DayMobile";
-import { getSharedVariables } from "../../ContextProviders/SharedVariables";
+import { getSharedVariables } from "@ContextProviders/SharedVariablesProvider";
 
 const weekDays = ["S", "M", "T", "W", "T", "F", "S"];
 export default function MonthMobile({ index, monthClass }) {

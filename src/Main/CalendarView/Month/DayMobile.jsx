@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import FullBox from '@ReusableComponents/FullBox';
 import { useState } from 'react';
 import { getDateValues } from '@ContextProviders';
-import { useModeView } from "@/App_right";
+import { useModeView } from "@Main/CalendarFrame";
 export default function DayMobile({ day,month,year, grayed, today }) {
     const {date,setters} = getDateValues();
     const {modes,views}=useModeView();

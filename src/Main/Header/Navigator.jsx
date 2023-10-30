@@ -3,8 +3,8 @@ import { Box, Button, IconButton } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import { useModeView } from "@/App_right";
-import { getDateValues } from '@/ContextProviders';
+import { useModeView } from "@Main/CalendarFrame";
+import { getDateValues } from '@ContextProviders';
 function Navigator() {
     const { modes, views } = useModeView();
     const { date, setters } = getDateValues();

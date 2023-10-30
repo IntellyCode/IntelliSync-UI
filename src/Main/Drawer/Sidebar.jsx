@@ -9,7 +9,7 @@ import Footer from './Footer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { getSharedVariables} from '../ContextProviders';
+import { getSharedVariables} from '@ContextProviders';
 
 
 export default function Sidebar({ handleDrawer }) {

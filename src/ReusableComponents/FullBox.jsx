@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 
-const FullBox = styled(Box)(({ theme,direction }) => ({
+const FullBox = styled(Box)(({ theme,direction="row" }) => ({
     width: "100%",
     height: "100%",
     padding: 0,

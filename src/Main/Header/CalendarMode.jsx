@@ -4,8 +4,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SquareIcon from '@mui/icons-material/Square';
 import CheckIcon from '@mui/icons-material/Check';
 
-import { useModeView } from "@/App_right";
-import FullBox from "../ReusableComponents/FullBox";
+import { useModeView } from "@Main/CalendarFrame";
+import FullBox from "@ReusableComponents/FullBox";
 
 const commonButtonStyle = {
     width: 100,

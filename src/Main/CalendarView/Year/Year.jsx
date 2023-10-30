@@ -8,13 +8,13 @@
  */
 
 import React from "react";
-import FullBox from "@/ReusableComponents/FullBox";
+import FullBox from "@ReusableComponents/FullBox";
 import MonthMobile from "../Month/MonthMobile";
 import { useTheme } from "@emotion/react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
-import { isResizing } from "@ContextProviders/Resizing";
-import { getSharedVariables } from "@ContextProviders/SharedVariables";
+import { isResizing } from "@ContextProviders/ResizingProvider";
+import { getSharedVariables } from "@ContextProviders/SharedVariablesProvider";
 const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function Year({ yearClass }) {

@@ -40,34 +40,28 @@ class Month {
     getFirstWeek() {
         //get first day of the month
         let firstDay = new Date(this.year, this.month, 1).getDay();
+        console.log(firstDay);
         //get number of days in previous month
         let prevMonthDays = new Date(this.year, this.month, 0).getDate();
-
+        console.log(prevMonthDays);
         let firstWeek = [];
 
-        for (let i = 0; i < 7; i++) {
-            if (i < firstDay) {
-                firstWeek.push([prevMonthDays - firstDay + i + 1, true, false]);
-            } else {
-                firstWeek.push([i - firstDay + 1, false, this.constructor.isToday(new Date(), i - firstDay + 1, this.month, this.year)]);
-            }
+        for (let i = 0; i < firstDay; i++) {
+            firstWeek.push([prevMonthDays - firstDay + i + 1, true, false]);
         }
         return firstWeek;
     }
 
-    getOtherWeeks(nextWeeks) {
+    getOtherWeeks(weeks) {
         const currentDate = new Date();
 
         //get number of days in current month
         let currentMonthDays = new Date(this.year, this.month + 1, 0).getDate();
 
-        let weeks = [];
-
         for (let i = 1; i <= currentMonthDays; i++) {
-            weeks.push([i, false, this.constructor.isToday(currentDate, i, this.month, this.year)]);
+            weeks.push([i, false, this.isToday(currentDate, i, this.month, this.year)]);
 
-            if (weeks.length === 7) {
-                this.#days.push(weeks);
+            if (this.isArrayFull(weeks)) {
                 weeks = [];
             }
         }
@@ -75,23 +69,21 @@ class Month {
         return weeks;
     }
 
-    getLastWeeks(nextWeeks) {
+    getLastWeeks(weeks) {
         //get number of days in next month
         let nextMonthDays = new Date(this.year, this.month + 2, 0).getDate();
         let i = 1;
-        let weeks = [];
 
         while (this.#days.length < 6) {
             weeks.push([i, true, false]);
-            if (this.constructor.isArrayFull(weeks)) {
-                this.#days.push(weeks);
+            if (this.isArrayFull(weeks)) {
                 weeks = [];
             }
             i++;
         }
     }
 
-    static isToday(currentDate, i, month, year) {
+    isToday(currentDate, i, month, year) {
         if (i === currentDate.getDate()
             && month === currentDate.getMonth()
             && year === currentDate.getFullYear()) {
@@ -100,8 +92,9 @@ class Month {
         return false
     }
 
-    static isArrayFull(array) {
+    isArrayFull(array) {
         if (array.length === 7) {
+            this.#days.push(array);
             return true;
         }
         return false;

@@ -1,20 +1,19 @@
-import { AppBar, Toolbar, IconButton, Accordion, AccordionSummary, AccordionDetails, Box } from "@mui/material";
-import React, { useState } from "react";
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Toolbar, IconButton, Accordion, AccordionSummary, AccordionDetails, Box,useMediaQuery,MenuIcon } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+import { getDateValues } from "@ContextProviders";
+import { useModeView } from "../CalendarFrame";
+import { getSharedVariables } from '@ContextProviders';
+import { useState,memo } from "react";
+
 import Navigator from "./Navigator";
 import CurrentDate from "./CurrentDate";
 import SearchBar from "./SearchBar";
 import CalendarMode from "./CalendarMode";
-import { getSharedVariables } from '../ContextProviders';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-import { getDateValues } from "@/ContextProviders";
-import { useModeView } from "../App_right";
-import FullBox from "../ReusableComponents/FullBox";
-export default function Header({ handleDrawer }) {
+
+import FullBox from "@ReusableComponents/FullBox";
+export default memo(function Header({ handleDrawer }) {
     const { date, setters } = getDateValues();
     const { modes, views } = useModeView();
     const SharedVariables = getSharedVariables();
@@ -149,4 +148,4 @@ export default function Header({ handleDrawer }) {
             </Toolbar>
         </AppBar>
     )
-}
+});

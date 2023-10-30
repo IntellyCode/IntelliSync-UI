@@ -6,8 +6,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import Drawer from '@mui/material/Drawer';
 import { styled, alpha } from '@mui/material/styles';
-import { getSharedVariables } from '../ContextProviders';
-import FullBox from '../ReusableComponents/FullBox';
+import { getSharedVariables } from '@ContextProviders';
+import FullBox from '@ReusableComponents/FullBox';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 function vhToPixels(value) {

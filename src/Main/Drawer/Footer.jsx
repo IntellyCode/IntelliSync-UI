@@ -3,7 +3,7 @@ import { IconButton, Box, Divider } from '@mui/material';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import {getSharedVariables} from '../ContextProviders';
+import {getSharedVariables} from '@ContextProviders';
 
 
 
