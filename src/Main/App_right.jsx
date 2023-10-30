@@ -11,6 +11,7 @@ import { getDateValues } from "@/ContextProviders";
 import Year from "./CalendarView/Year/Year";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import YearMobile from "./CalendarView/Year/YearMobile";
 // Create a new context for mode and view
 const ModeViewContext = createContext();
 
@@ -63,6 +64,7 @@ export default function AppRight({ handleDrawer }) {
                 <Divider variant="fullWidth" />
                 {mode=="month"&&<Month monthClass={new MonthClass(date.month,date.year)} />}
                 {mode=="year" &&!smallerThanSm&&<Year yearClass={new YearClass(date.year)} />}
+                {mode=="year" &&smallerThanSm&&<YearMobile year={date.year}/>}
             </FullBox>
         </ModeViewContext.Provider>
     );

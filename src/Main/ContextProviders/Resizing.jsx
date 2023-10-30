@@ -22,8 +22,7 @@ export default function ResizingProvider({ children }) {
         });
     const previousSize = useRef({ width: window.innerWidth, height: window.innerHeight });
     useEffect(() => {
-        let timeoutId;
-
+        
         const resizeObserver = new ResizeObserver((entries) => {
             for (let entry of entries) {
                 const { width, height } = entry.contentRect;
