@@ -37,7 +37,6 @@ export default function DayMobile({ day,month,year, grayed, today }) {
                     },
                     m:"1px",
                     cursor:"pointer",
-                    userSelect:"none",
                 }}
                 onClick={() => {
                     setters.setDay(day);
