@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import FullBox from '@ReusableComponents/FullBox';
+import {FullBox} from "@ReusableComponents";
 import { useState } from 'react';
 import { getDateValues } from '@ContextProviders';
 import { useModeView } from "@Main/CalendarFrame";

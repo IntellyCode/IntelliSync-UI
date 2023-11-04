@@ -10,6 +10,7 @@ export default defineConfig({
       '@ReusableComponents': '/src/ReusableComponents',
       '@ContextProviders': '/src/ContextProviders',
       '@theme': '/src/theme',
+      '@Utils': '/src/Utils',
     },
   },
 })

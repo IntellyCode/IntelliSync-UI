@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, forwardRef, useState, useLayoutEffect } from 'react';
-import FullBox from '@ReusableComponents/FullBox';
+import {FullBox} from "@ReusableComponents";
 import { Typography, Box, ListItem } from '@mui/material';
 
 const heightOfEvent = 16;

@@ -1,6 +1,6 @@
 import React, { useRef, forwardRef, useEffect,useState } from "react";
 
-import FullBox from "@ReusableComponents/FullBox";
+import {FullBox} from "@ReusableComponents"
 import Day from "./Day";
 import { isResizing } from "@ContextProviders";
 

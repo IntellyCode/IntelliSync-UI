@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef, useEffect, useState } from "react";
 import { useMediaQuery, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import FullBox from "@ReusableComponents/FullBox";
+import {FullBox} from "@ReusableComponents"
 import DayMobile from "./DayMobile";
 import { getSharedVariables } from "@ContextProviders/SharedVariablesProvider";
 

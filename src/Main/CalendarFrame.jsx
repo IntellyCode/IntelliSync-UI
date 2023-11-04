@@ -3,7 +3,7 @@ import { useMediaQuery, Divider } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { getDateValues } from "@ContextProviders";
 
-import FullBox from "@ReusableComponents/FullBox";
+import {FullBox} from "@ReusableComponents"
 import Header from "./Header";
 import MonthClass from "@Main/DateConstructors/Month.js";
 import YearClass from "@Main/DateConstructors/Year.js";

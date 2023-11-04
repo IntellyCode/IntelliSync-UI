@@ -8,7 +8,7 @@
  */
 
 import React from "react";
-import FullBox from "@ReusableComponents/FullBox";
+import {FullBox} from "@ReusableComponents"
 import MonthMobile from "../Month/MonthMobile";
 import { useTheme } from "@emotion/react";
 import { Box, Typography, useMediaQuery } from "@mui/material";

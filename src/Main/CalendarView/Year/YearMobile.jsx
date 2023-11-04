@@ -12,7 +12,7 @@
 import React from 'react';
 import { Box, Typography, Grid, Paper, List, ListItem, ListItemText } from '@mui/material';
 import { useTheme } from '@emotion/react';
-import FullBox from '@ReusableComponents/FullBox';
+import {FullBox} from "@ReusableComponents";
 import { getDateValues } from '@ContextProviders/DateTrackerProvider';
 import { useModeView } from '../../CalendarFrame';
 import { isResizing } from '@ContextProviders';

@@ -11,7 +11,6 @@ import { createTheme } from "@mui/material";
 
 const typographyStyle = { textAlign: "left", width: 'fit-content', p: 2, color: "primary.contrastText", fontSize: "17px" };
 const frame = { height: 'auto', py: 4, px: 2 };
-const resetAccordion = { backgroundColor: "rgb(0,0,0,0)", boxShadow: "none" };
 const summary = { display: "flex", alignItems: "center", justifyContent: "space-between" };
 
 const remindersData = [
@@ -49,7 +48,7 @@ const Reminders = () => {
 
     return (
         <Container sx={frame} >
-            <Accordion sx={resetAccordion} disableGutters >
+            <Accordion disableGutters >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ ...summary, p: 0 }}>
                     <Typography variant="body1" sx={typographyStyle}>
                         Today's Reminders

@@ -5,7 +5,7 @@ import SquareIcon from '@mui/icons-material/Square';
 import CheckIcon from '@mui/icons-material/Check';
 
 import { useModeView } from "@Main/CalendarFrame";
-import FullBox from "@ReusableComponents/FullBox";
+import {FullBox} from "@ReusableComponents"
 
 const commonButtonStyle = {
     width: 100,

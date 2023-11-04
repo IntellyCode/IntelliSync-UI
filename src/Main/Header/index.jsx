@@ -1,151 +1,109 @@
-import { AppBar, Toolbar, IconButton, Accordion, AccordionSummary, AccordionDetails, Box,useMediaQuery,MenuIcon } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
+import { AppBar, Toolbar, IconButton, Accordion, AccordionSummary, AccordionDetails,Box } from "@mui/material";
 import { getDateValues } from "@ContextProviders";
 import { useModeView } from "../CalendarFrame";
 import { getSharedVariables } from '@ContextProviders';
-import { useState,memo } from "react";
-
+import { useState, memo, useMemo, useCallback } from "react";
+import { FullToolBar, FullAppBar } from "@ReusableComponents";
+import { smallerThan, largerThan } from "@Utils";
+import MenuIcon from '@mui/icons-material/Menu';
 import Navigator from "./Navigator";
 import CurrentDate from "./CurrentDate";
 import SearchBar from "./SearchBar";
 import CalendarMode from "./CalendarMode";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
+import { FullBox } from "@ReusableComponents"
+import { Share } from "@mui/icons-material";
 
-import FullBox from "@ReusableComponents/FullBox";
 export default memo(function Header({ handleDrawer }) {
-    const { date, setters } = getDateValues();
-    const { modes, views } = useModeView();
-    const SharedVariables = getSharedVariables();
-    const [open, setOpen] = useState(false);
+  const { date, setters } = getDateValues();
+  const { modes, views } = useModeView();
+  const SharedVariables = getSharedVariables();
 
-    const theme = useTheme();
+  const [open, setOpen] = useState(false);
 
-    const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const matches ={
+    sm: smallerThan('sm'),
+    md: smallerThan('md'),
+  }
 
-    const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
+  const handleAccordion = useCallback(() => {
+    setOpen(!open);
+  }, [open]);
 
-    const appBarStyles = {
-        boxShadow: 0,
-        width: "100%",
-        minHeight: SharedVariables.navBarHeight,
-        display: "flex",
-        backgroundColor: "primary.main",
-        zIndex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "height 200ms"
-
-    };
-    const toolbarStyles = {
-        height: 1,
-        width: 1,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-    };
-    const iconButtonStyles = {
-        display: "flex",
-        alignItems: "center",
-        mx: matchesSm ? 0 : 2,
-        p: matchesSm ? 0 : 2,
-        "&:focus": {
-            outline: "none"
-        }
-    };
-
-    const accordionSummary = {
-        px: matchesSm ? 1 : 4,
-        height: SharedVariables.navBarHeight,
-        width: 1,
+  const iconButtonStyles = useMemo(() => ({
+    display: "flex",
+    alignItems: "center",
+    mx: matches.sm ? 0 : 2,
+    p: matches.sm ? 0 : 2,
+    "&:focus": {
+      outline: "none"
     }
-    if (matchesMd) {
-        const handleAccordion = () => {
-            setOpen(!open);
-        };
-        return (
-            <AppBar position="static" sx={appBarStyles}>
-                <Toolbar sx={toolbarStyles} disableGutters>
-                    <Accordion variant="noShadow"
-                        sx={{ width: 1, m: 0 }}
-                        disableGutters expanded={open} >
-                        <AccordionSummary variant="centeredContent"
+  }), [matches.sm]);
 
-                            sx={accordionSummary}
+  const accordionSummary = useMemo(() => ({
+    px: matches.sm ? 1 : 4,
+    height: SharedVariables.navBarHeight,
+    width: 1,
+  }), [matches.sm, SharedVariables.navBarHeight]);
 
-                        >
-                            <FullBox direction="row"
-                                sx={{
-                                    justifyContent: "space-between",
-                                    boxSizing: "border-box",
-                                    px: !matchesSm ? 3 : 1
-                                }}>
-                                <IconButton
-                                    size="large"
-                                    edge="start"
-                                    color="inherit"
-                                    aria-label="menu"
-                                    sx={iconButtonStyles}
-                                    onClick={handleDrawer}
-                                >
-                                    <MenuIcon fontSize="medium" />
-                                </IconButton>
-                                <FullBox direction="row"
-                                    sx={{
-                                        alignItems: "center",
-                                        justifyContent: "center"
-                                    }}
-                                    onClick={handleAccordion} >
-                                    <CurrentDate variant={modes.mode} />
-                                    <ArrowDropDownIcon fontSize={matchesSm ? "medium" : "large"} sx={{
-                                        transform: open ? "rotate(-180deg)" : "rotate(0deg)",
-                                        transition: "transform 200ms"
-                                    
-                                    }} />
-                                </FullBox>
-                                <SearchBar mobile={matchesMd} />
-                            </FullBox>
-                        </AccordionSummary>
-                        <AccordionDetails variant="even-content"
-                            sx={{
-                                backgroundColor: "primary.main",
-                                width: "100%",
-                                m: 0,
-                                p: 0
-                            }}>
-                            <CalendarMode variant="condensed" mobile={matchesSm} />
-                        </AccordionDetails>
-                    </Accordion>
-                </Toolbar>
-            </AppBar>
-        )
-    }
+  const renderAccordion = useMemo(() => (
+    <Accordion variant="fullWidth"
+      disableGutters expanded={open} >
+      <AccordionSummary variant="centeredContent"
+        sx={accordionSummary}
+      >
+        <FullBox direction="row" content="space-between"
+          sx={{px: matches.sm ? 1: 3}}>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={iconButtonStyles}
+            onClick={handleDrawer}
+          >
+            <MenuIcon fontSize="medium" />
+          </IconButton>
+          <FullBox direction="row" content="center"
+            onClick={handleAccordion} >
+            <CurrentDate variant={modes.mode} />
+            <ArrowDropDownIcon fontSize={matches.sm ? "medium" : "large"} sx={{
+              transform: open ? "rotate(-180deg)" : "rotate(0deg)",
+              transition: "transform 200ms"
+            }} />
+          </FullBox>
+          <SearchBar mobile={matches.md} />
+        </FullBox>
+      </AccordionSummary>
+      <AccordionDetails variant="even-content"
+        sx={{backgroundColor: "primary.main"}}>
+        <CalendarMode variant="condensed" mobile={matches.sm} />
+      </AccordionDetails>
+    </Accordion>
+  ), [accordionSummary, handleAccordion, handleDrawer, iconButtonStyles, matches.md, matches.sm, modes.mode, open, SharedVariables.navBarHeight]);
 
-    return (
-        <AppBar position="static" sx={appBarStyles}>
-            <Toolbar sx={toolbarStyles}>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={iconButtonStyles}
-                    onClick={handleDrawer}
-                >
-                    <MenuIcon fontSize="medium" />
-                </IconButton>
-                <Navigator />
-                <CurrentDate variant={modes.mode} />
-                <Box sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
-                    width: "100%"
-                }}>
-                    <SearchBar />
-                    <CalendarMode />
-                </Box>
-            </Toolbar>
-        </AppBar>
-    )
+  const renderAppBar = useMemo(() => (
+    <FullAppBar position="static" minheight={SharedVariables.navBarHeight}>
+      <FullToolBar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={iconButtonStyles}
+          onClick={handleDrawer}>
+          <MenuIcon fontSize="medium" />
+        </IconButton>
+        <Navigator />
+        <CurrentDate variant={modes.mode} />
+        <FullBox direction ="row" sx={{justifyContent: "flex-end"}}>
+          <SearchBar />
+          <CalendarMode />
+        </FullBox>
+      </FullToolBar>
+    </FullAppBar>
+  ), [handleDrawer, iconButtonStyles, modes.mode, SharedVariables.navBarHeight]);
+
+  return matches.md ? renderAccordion : renderAppBar;
 });

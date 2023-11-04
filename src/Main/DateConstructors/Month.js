@@ -40,10 +40,8 @@ class Month {
     getFirstWeek() {
         //get first day of the month
         let firstDay = new Date(this.year, this.month, 1).getDay();
-        console.log(firstDay);
         //get number of days in previous month
         let prevMonthDays = new Date(this.year, this.month, 0).getDate();
-        console.log(prevMonthDays);
         let firstWeek = [];
 
         for (let i = 0; i < firstDay; i++) {

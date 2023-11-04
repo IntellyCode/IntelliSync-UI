@@ -5,7 +5,6 @@ import Logout from '@mui/icons-material/Logout';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 const frame = {p: 2,height:"80px",width:"250px",m:0 };
 const typographyStyle = { textAlign: "center", width: 'fit-content', p: 2, color: "primary.contrastText", fontSize: "17px", cursor: "default" };
-const resetAccordion = { backgroundColor: 'rgb(0, 0, 0, 0)', boxShadow: 'none' };
 const summary = {
   p: 0,
   '& .MuiAccordionSummary-content': {
@@ -41,7 +40,7 @@ export default function AccountDetails( { mobile,handleDrawer }) {
 
   return (
     <Container sx={{ ...frame}}>
-      <Accordion sx={resetAccordion} disableGutters expanded={false}>
+      <Accordion disableGutters expanded={false}>
         <AccordionSummary sx={summary}>
 
           <IconButton fontSize='large' onClick={openMenu} sx={{

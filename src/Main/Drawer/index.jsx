@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { getSharedVariables } from '@ContextProviders';
 
-import FullBox from "@ReusableComponents/FullBox";
+import {FullBox} from "@ReusableComponents"
 
 const Sidebar = lazy(() => import("./Sidebar"));
 

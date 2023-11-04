@@ -32,7 +32,7 @@ const Calendars = () =>{
 
     return (
         <Container sx={frame}>
-            <Accordion variant="noShadow" disableGutters  >
+            <Accordion disableGutters  >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ p: 0 }} variant="centeredContent">
                     <Typography variant="body1" sx={typographyStyle}>Calendars</Typography>
                 </AccordionSummary>

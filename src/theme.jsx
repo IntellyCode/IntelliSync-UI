@@ -92,12 +92,17 @@ const theme = createTheme({
       ],
     },
     MuiAccordion: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgb(0,0,0,0)",
+          boxShadow: "none"
+        }
+      },
       variants: [
         {
-          props: { variant: "noShadow" },
+          props: { variant: "fullWidth" },
           style: {
-            backgroundColor: "rgb(0,0,0,0)",
-            boxShadow: "none"
+            width: "100%"
           }
         }
       ]
@@ -131,7 +136,10 @@ const theme = createTheme({
             justifyContent: 'space-between',
             width: "100%",
             flexWrap: "wrap",
-          }}
+            padding: "0px",
+            margin: "0px"
+          }
+        },
       ]
     }
   },

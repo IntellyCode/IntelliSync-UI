@@ -5,7 +5,6 @@ import CheckIcon from "@mui/icons-material/Check";
 import React, { forwardRef, useEffect, useState } from "react";
 
 const frame = { height: 'auto', py: 4, px: 2 };
-const resetAccordion = { backgroundColor: 'rgb(0, 0, 0, 0)', boxShadow: 'none' };
 const summary = { display: 'flex', alignItems: 'center', justifyContent: 'space-between' };
 const typographyStyle = { textAlign: "left", width: 'fit-content', p: 2,color:"primary.contrastText",fontSize:"17px" };
 
@@ -48,7 +47,7 @@ const Filters =() =>{
 
     return (
         <Container sx={frame} >
-            <Accordion sx={resetAccordion} disableGutters  >
+            <Accordion disableGutters  >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ ...summary, p: 0 }}>
                     <Typography sx={typographyStyle}>Filters</Typography>
                 </AccordionSummary>
