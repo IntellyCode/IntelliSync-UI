@@ -78,7 +78,9 @@ export default function CalendarFrame({ handleDrawer }) {
     return (
         // Wrap the component with the context provider
         <ModeViewContext.Provider value={{ modes, views }}>
-            <FullBox direction="column" >
+            <FullBox direction="column" sx={{
+                justifyContent:"flex-start"
+            }}>
                 <Header handleDrawer={handleDrawer} />
                 <Divider variant="fullWidth" />
                 <Suspense fallback={fallback}>

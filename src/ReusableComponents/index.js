@@ -9,3 +9,15 @@ export {
 export {
     FullBox
 } from './FullBox'
+
+export {
+    Search
+} from './Search'
+
+export {
+    StyledInputBase
+} from "./StyledInputBase"
+
+export {
+    SearchIconWrapper
+} from "./SearchIconWrapper"
