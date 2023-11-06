@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { getSharedVariables } from '@ContextProviders';
 
-import {FullBox} from "@ReusableComponents"
+import {FlexBox} from "@ReusableComponents"
 
 const Sidebar = lazy(() => import("./Sidebar"));
 
@@ -30,13 +30,13 @@ function Drawer({ open, handleDrawer, drawerClicked }) {
 
     const fallback = useMemo(() => (
 
-        <FullBox direction="row"
+        <FlexBox variant="full-box" direction="row"
             sx={{
                 width: SV.drawerWidth,
                 backgroundColor: theme.palette.secondary.main
             }}>
 
-        </FullBox>
+        </FlexBox>
     ), [])
 
 

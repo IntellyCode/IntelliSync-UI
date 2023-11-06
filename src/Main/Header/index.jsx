@@ -9,10 +9,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Navigator from "./Navigator";
 import CurrentDate from "./CurrentDate";
 import SearchBar from "./SearchBar";
-import CalendarMode from "./CalendarMode";
+import {CalendarMode} from "./CalendarMode";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-import { FullBox } from "@ReusableComponents"
+import { FlexBox } from "@ReusableComponents"
 import { Share } from "@mui/icons-material";
 
 const AccordionHeader = memo(({ handleDrawer, handleAccordion, open, matches, modes }) => {
@@ -38,7 +38,7 @@ const AccordionHeader = memo(({ handleDrawer, handleAccordion, open, matches, mo
     <AccordionSummary variant="centeredContent"
       sx={accordionSummary}
     >
-      <FullBox direction="row" content="space-between"
+      <FlexBox variant="full-box" direction="row" content="space-between"
         sx={{ px: matches.sm ? 1 : 3 }}>
         <IconButton
           size="large"
@@ -50,16 +50,16 @@ const AccordionHeader = memo(({ handleDrawer, handleAccordion, open, matches, mo
         >
           <MenuIcon fontSize="medium" />
         </IconButton>
-        <FullBox direction="row" content="center"
+        <FlexBox variant="full-box" direction="row" content="center"
           onClick={handleAccordion} >
           <CurrentDate variant={modes.mode} />
           <ArrowDropDownIcon fontSize={matches.sm ? "medium" : "large"} sx={{
             transform: open ? "rotate(-180deg)" : "rotate(0deg)",
             transition: "transform 200ms"
           }} />
-        </FullBox>
+        </FlexBox>
         <SearchBar mobile={matches.md} />
-      </FullBox>
+      </FlexBox>
     </AccordionSummary>
   );
 });
@@ -84,10 +84,10 @@ const AppBarHeader = memo(({ handleDrawer, modes }) => (
     </IconButton>
     <Navigator />
     <CurrentDate variant={modes.mode} />
-    <FullBox direction="row" sx={{ justifyContent: "flex-end" }}>
+    <FlexBox variant="full-box" direction="row" sx={{ justifyContent: "flex-end" }}>
       <SearchBar />
       <CalendarMode />
-    </FullBox>
+    </FlexBox>
   </>
 ));
 

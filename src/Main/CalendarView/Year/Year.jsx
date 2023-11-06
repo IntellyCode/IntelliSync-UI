@@ -8,7 +8,7 @@
  */
 
 import React from "react";
-import {FullBox} from "@ReusableComponents"
+import {FlexBox} from "@ReusableComponents"
 import MonthMobile from "../Month/MonthMobile";
 import { useTheme } from "@emotion/react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
@@ -29,7 +29,7 @@ export default function Year({ yearClass }) {
         gridTemplateColumns: greaterThanMd ? "repeat(4, 1fr)" : "repeat(3, 1fr)",
     }
     return (
-        <FullBox
+        <FlexBox variant="full-box"
             direction="row"
             sx={{
                 display: "grid",
@@ -44,14 +44,14 @@ export default function Year({ yearClass }) {
         >
             {yearClass.months.map((month, i) => {
                 return (
-                    <FullBox
+                    <FlexBox variant="full-box"
                     direction="column"
                         key={i}
                         sx={{
                             justifyContent: "flex-start",
                             minHeight: !greaterThanMd?"180px":"120px",
                         }}>
-                        <FullBox
+                        <FlexBox variant="full-box"
                             key={i}
                             direction="column"
                             sx={{
@@ -64,12 +64,12 @@ export default function Year({ yearClass }) {
                                 color: "red",
 
                             }}>{monthsArray[i]}</Typography>
-                        </FullBox>
+                        </FlexBox>
                         <MonthMobile monthClass={month} />
-                    </FullBox>
+                    </FlexBox>
                 );
             })}
-        </FullBox>
+        </FlexBox>
     )
 
 }

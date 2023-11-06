@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useReducer, lazy, Suspense }
 import { Box, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import CalendarFrame from "./CalendarFrame";
-import {FullBox} from "@ReusableComponents"
+import {FlexBox} from "@ReusableComponents"
 import Month from "@Main/DateConstructors/Month";
 import Drawer from "@Main/Drawer";
 
@@ -52,9 +52,9 @@ export default function MainFrame() {
         dispatch({ type: "TOGGLE_DRAWER" });
     }, []);
     return (
-        <FullBox direction="row">
+        <FlexBox variant="full-box" direction="row">
             <Drawer open={drawerOpen} handleDrawer={handleDrawer} drawerClicked={drawerClicked} />
             <CalendarFrame handleDrawer={handleDrawer} />
-        </FullBox>
+        </FlexBox>
     );
 }

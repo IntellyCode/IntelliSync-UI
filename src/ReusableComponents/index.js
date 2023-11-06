@@ -7,10 +7,6 @@ export {
 } from './FullToolBar'
 
 export {
-    FullBox
-} from './FullBox'
-
-export {
     Search
 } from './Search'
 
@@ -21,3 +17,7 @@ export {
 export {
     SearchIconWrapper
 } from "./SearchIconWrapper"
+
+export {
+    FlexBox
+} from "./FlexBox"

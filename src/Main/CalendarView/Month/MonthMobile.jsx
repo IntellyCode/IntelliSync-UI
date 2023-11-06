@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef, useEffect, useState } from "react";
 import { useMediaQuery, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import {FullBox} from "@ReusableComponents"
+import {FlexBox} from "@ReusableComponents"
 import DayMobile from "./DayMobile";
 import { getSharedVariables } from "@ContextProviders/SharedVariablesProvider";
 
@@ -11,7 +11,7 @@ export default function MonthMobile({ index, monthClass }) {
     const monthArray = monthClass.getDays();
     const greaterThanSm = useMediaQuery(theme.breakpoints.up("sm"))
     return (
-        <FullBox
+        <FlexBox variant="full-box"
             direction="column"
             sx={{
                 display: "inline-grid",
@@ -24,7 +24,7 @@ export default function MonthMobile({ index, monthClass }) {
            
             {weekDays.map((day, index) => {
                 return (
-                    <FullBox
+                    <FlexBox variant="full-box"
                         key={index}
                         direction="column"
                         sx={{
@@ -39,7 +39,7 @@ export default function MonthMobile({ index, monthClass }) {
                             margin: "0px",
                             padding: `${theme.spacing(0.8)} 0px`,
                         }}>{day}</p>
-                    </FullBox>
+                    </FlexBox>
                 )
             })}
             {monthArray.map((week, i) => {
@@ -57,6 +57,6 @@ export default function MonthMobile({ index, monthClass }) {
                     </React.Fragment>
                 );
             })}
-        </FullBox>
+        </FlexBox>
     );
 }

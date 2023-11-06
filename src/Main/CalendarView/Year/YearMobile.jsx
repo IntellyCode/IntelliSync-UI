@@ -12,7 +12,7 @@
 import React from 'react';
 import { Box, Typography, Grid, Paper, List, ListItem, ListItemText } from '@mui/material';
 import { useTheme } from '@emotion/react';
-import {FullBox} from "@ReusableComponents";
+import {FlexBox} from "@ReusableComponents";
 import { getDateValues } from '@ContextProviders/DateTrackerProvider';
 import { useModeView } from '../../CalendarFrame';
 import { isResizing } from '@ContextProviders';
@@ -62,7 +62,7 @@ export default function YearMobile({ year }) {
         
     }
 
-    const fullBoxStyle = {
+    const FlexBox variant="full-box"Style = {
         p: 1,
         borderRadius:1,
         "&:hover": {
@@ -96,9 +96,9 @@ export default function YearMobile({ year }) {
                 <Grid item xs={4} key={index}
                     sx={gridStyle}
                     onClick={() => getToMonth(month)}>
-                    <FullBox sx={{ ...fullBoxStyle }} direction="column">
+                    <FlexBox variant="full-box" sx={{ ...FlexBox variant="full-box"Style }} direction="column">
                         <Typography variant="body2" align="center" sx={typographyStyle}>{month}</Typography>
-                        <FullBox sx={{ p: 1, overflow: "scroll" }} direction="column">
+                        <FlexBox variant="full-box" sx={{ p: 1, overflow: "scroll" }} direction="column">
                             <List disablePadding dense sx={{ width: 0.9 }}>
                                 {getEvents(index).map((event, index) => (
                                     <ListItem key={index} sx={{ ...listItemStyle, my: 1 }} alignItems='center'>
@@ -110,8 +110,8 @@ export default function YearMobile({ year }) {
                                     </ListItem>
                                 ))}
                             </List>
-                        </FullBox>
-                    </FullBox>
+                        </FlexBox>
+                    </FlexBox>
                 </Grid>
             ))
             }

@@ -1,6 +1,6 @@
 import React, { useRef, forwardRef, useEffect,useState } from "react";
 
-import {FullBox} from "@ReusableComponents"
+import {FlexBox} from "@ReusableComponents"
 import Day from "./Day";
 import { isResizing } from "@ContextProviders";
 
@@ -31,7 +31,7 @@ export default function Month({ monthClass }) {
 }
 const Grid = forwardRef(({ children }, ref) => {
   return (
-    <FullBox
+    <FlexBox variant="full-box"
       ref={ref}
       direction="column"
       style={{
@@ -41,7 +41,7 @@ const Grid = forwardRef(({ children }, ref) => {
       }}
     >
       {children}
-    </FullBox>
+    </FlexBox>
   );
 }
 );

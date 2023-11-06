@@ -3,7 +3,7 @@ import { useMediaQuery, Divider } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { getDateValues } from "@ContextProviders";
 
-import {FullBox} from "@ReusableComponents"
+import {FlexBox} from "@ReusableComponents"
 import Header from "./Header";
 import MonthClass from "@Main/DateConstructors/Month.js";
 import YearClass from "@Main/DateConstructors/Year.js";
@@ -67,7 +67,7 @@ export default function CalendarFrame({ handleDrawer }) {
     }
 
     const fallback = (
-        <FullBox
+        <FlexBox variant="full-box"
             direction="column"
             sx={{
                 backgroundColor: theme.palette.primary.main
@@ -78,7 +78,7 @@ export default function CalendarFrame({ handleDrawer }) {
     return (
         // Wrap the component with the context provider
         <ModeViewContext.Provider value={{ modes, views }}>
-            <FullBox direction="column" sx={{
+            <FlexBox variant="full-box" direction="column" sx={{
                 justifyContent:"flex-start"
             }}>
                 <Header handleDrawer={handleDrawer} />
@@ -88,7 +88,7 @@ export default function CalendarFrame({ handleDrawer }) {
                     {state.mode === "year" && !smallerThanSm && <Year yearClass={new YearClass(date.year)} />}
                     {state.mode === "year" && smallerThanSm && <YearMobile year={date.year} />}
                 </Suspense>
-            </FullBox>
+            </FlexBox>
         </ModeViewContext.Provider>
     );
 }

@@ -59,6 +59,7 @@ const theme = createTheme({
             outline: "none", // Remove the default focus outline
           },
           borderRadius: "10px",
+          
         },
       },
     },
@@ -68,6 +69,7 @@ const theme = createTheme({
           "&:focus": {
             outline: "none", // Remove the default focus outline
           },
+          
         },
       },
     },
@@ -141,7 +143,7 @@ const theme = createTheme({
           }
         },
       ]
-    }
+    },
   },
 });
 

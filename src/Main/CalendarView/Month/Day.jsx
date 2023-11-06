@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, forwardRef, useState, useLayoutEffect } from 'react';
-import {FullBox} from "@ReusableComponents";
+import {FlexBox} from "@ReusableComponents";
 import { Typography, Box, ListItem } from '@mui/material';
 
 const heightOfEvent = 16;
@@ -45,7 +45,7 @@ export default function Day({ day, grayed, dayOfWeek, today, containerSize }) {
     }
 
     return (
-        <FullBox
+        <FlexBox variant="full-box"
             direction="column"
             sx={{
                 justifyContent: 'flex-start',
@@ -77,15 +77,15 @@ export default function Day({ day, grayed, dayOfWeek, today, containerSize }) {
                 {day}
             </Typography>
 
-            <FullBox direction="column" ref={parentRef}>
+            <FlexBox variant="full-box" direction="column" ref={parentRef}>
                 {events.slice(0, events.length - overflowFactor).map((event, index) => (
                     <Event key={index} index={index} del={del} >New Event</Event>
                 ))}
                 {overflowFactor > 0 && <Event variant="more">{overflowFactor} More...</Event>}
-            </FullBox>
+            </FlexBox>
 
 
-        </FullBox>
+        </FlexBox>
     );
 }
 const Event = ({ children, del, index, variant = "default" }) => {

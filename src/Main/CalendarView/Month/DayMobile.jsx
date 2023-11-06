@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import {FullBox} from "@ReusableComponents";
+import {FlexBox} from "@ReusableComponents";
 import { useState } from 'react';
 import { getDateValues } from '@ContextProviders';
 import { useModeView } from "@Main/CalendarFrame";
@@ -13,7 +13,7 @@ export default function DayMobile({ day,month,year, grayed, today }) {
         borderRadius: "40px",
     } : null;
     return (
-        <FullBox direction="column"
+        <FlexBox variant="full-box" direction="column"
             sx={{
                 justifyContent: "center",
                 alignItems: "center",
@@ -54,6 +54,6 @@ export default function DayMobile({ day,month,year, grayed, today }) {
                 borderRadius: "50%",
                 margin:"1px"
             }}></div>}
-        </FullBox>
+        </FlexBox>
     )
 }

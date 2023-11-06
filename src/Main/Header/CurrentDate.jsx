@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import { getDateValues } from '@ContextProviders';
 import { useTheme } from '@mui/material/styles';   
 import { smallerThan } from '@Utils';
+import { FlexBox } from '@ReusableComponents';
 const monthNames = [
     "January",
     "February",
@@ -36,15 +37,8 @@ const CurrentDate = memo(({ variant = "month" }) =>{
         fontSize:matchesSm?"19px":"22px" 
     };
 
-    const boxStyle = {
-        display: "flex", 
-        alignItems: "center",
-        justifyContent:"flex-end",
-        mx:0
-    };
-
     return (
-        <Box sx={boxStyle}>
+        <FlexBox direction="row">
             {variant=="day" && (
                 <Typography variant="h6" sx={typographyStyle}>
                     {date.day}
@@ -58,7 +52,7 @@ const CurrentDate = memo(({ variant = "month" }) =>{
             <Typography variant="h6" sx={{...typographyStyle,fontWeight:"bold"}}>
                 {date.year}
             </Typography>
-        </Box>
+        </FlexBox>
     );
 });
 export default CurrentDate;
